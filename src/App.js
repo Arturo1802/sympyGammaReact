@@ -1,24 +1,69 @@
-import logo from './logo.svg';
 import './App.css';
+import NavbarTop from './components/Navbar';
+import React, { useState } from 'react';
+import { Accordion, Button, Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
+import Derivadas from './components/Derivadas';
+import Integrales from './components/Integrales';
+import Ecuaciones from './components/Ecuaciones';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
+
+const queryClient = new QueryClient()
 function App() {
+  const [open, setOpen] = useState('1'); 
+  const [toggled, setToggled] = useState(false)
+  const handleClose=()=> setToggled(false)
+  const handleOpen=()=> setToggled(true)
+
+  const toggle = (id) => {
+    if (open === id) {
+      setOpen();
+    } else {
+      setOpen(id);
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <QueryClientProvider client={queryClient}>
+      <div className="App bg-secondary" >
+
+        <NavbarTop />
+        <Offcanvas  style={{display:'flex',textAlign:'center'}}  isOpen={toggled} >
+          <OffcanvasHeader style={{width:'100%'}} >
+            <Button className='bg-info' style={{border:'1px white solid' ,borderRadius:25,paddingLeft:15,paddingRight:15}} onClick={handleClose}>X</Button>
+            <br />Ayuda
+            
+          </OffcanvasHeader>
+          
+          <OffcanvasBody style={{textAlign:'left'}}>
+            <strong>
+              Simbolos:
+              <ul>
+                <li>**: Potencia</li>
+                <li>*: Multiplicacion</li>
+                <li>/: Division</li>
+                <li>sin(x): seno (funciona con coseno y otras) </li>
+                <li>Exp(x): Es el equivalente de e^x</li>
+                <li>log(x): Logaritmo natural</li>
+              </ul>
+            </strong>
+          </OffcanvasBody>
+        </Offcanvas>
+        
+        <Accordion style={{ maxWidth: '80vw', margin: 'auto', marginTop: '5vh' }} open={open} toggle={toggle}>
+        <Button
+          style={{marginBottom:10}}
+          color="primary"
+          onClick={handleOpen}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Ayuda
+        </Button>
+          <Derivadas />
+          <Integrales />
+          <Ecuaciones></Ecuaciones>
+        </Accordion>
+
+      </div>
+    </QueryClientProvider>
   );
 }
 
