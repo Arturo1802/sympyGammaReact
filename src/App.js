@@ -28,8 +28,7 @@ function App() {
 
         <NavbarTop />
         <Offcanvas  style={{display:'flex',textAlign:'center'}}  isOpen={toggled} >
-          <OffcanvasHeader style={{width:'100%'}} >
-            <Button className='bg-info' style={{border:'1px white solid' ,borderRadius:25,paddingLeft:15,paddingRight:15}} onClick={handleClose}>X</Button>
+          <OffcanvasHeader style={{width:'100%'}} > 
             <br />Ayuda
             
           </OffcanvasHeader>
@@ -38,15 +37,16 @@ function App() {
             <strong>
               Simbolos:
               <ul>
-                <li>**: Potencia</li>
-                <li>*: Multiplicacion</li>
-                <li>/: Division</li>
-                <li>sin(x): seno (funciona con coseno y otras) </li>
-                <li>Exp(x): Es el equivalente de e^x</li>
-                <li>log(x): Logaritmo natural</li>
+                <li>** ó ^ : Potencia</li>
+                <li>* : Multiplicacion</li>
+                <li>/ : Division</li>
+                <li>sin(x) : seno (funciona con coseno y otras) </li>
+                <li>Exp(x) : Es el equivalente de e^x</li>
+                <li>log(x) : Logaritmo natural</li>
               </ul>
             </strong>
           </OffcanvasBody>
+          <Button className='bg-success' style={{border:'1px white solid' ,borderRadius:25,paddingLeft:2,paddingRight:2, width:100,margin:'auto'}} onClick={handleClose}>Cerrar</Button>
         </Offcanvas>
         
         <Accordion style={{ maxWidth: '80vw', margin: 'auto', marginTop: '5vh' }} open={open} toggle={toggle}>

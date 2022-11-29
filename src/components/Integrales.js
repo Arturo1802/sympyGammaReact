@@ -13,7 +13,7 @@ import {
 const Integrales = () => {
     const [response, setResponse] = useState({})
     const submitForm = async(variable) => {
-        await console.log(axios.post(`http://localhost:3333/integrate/`, { id: `${variable}`, expression: `${variable}` }).then((res) => { setResponse(res.data) }))
+        await console.log(axios.post(`http://localhost:8000/integrate/`, { id: `${variable}`, expression: `${variable}` }).then((res) => { setResponse(res.data) }))
     }
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -41,7 +41,7 @@ const Integrales = () => {
                     </Button>
                 </form>
                 <br />
-                <Container className='border bg-secondary ' style={{ margin: 'auto',padding:10 }}>
+                <Container className='border bg-secondary ' style={{ margin: 'auto',padding:5 }}>
                     {
                         response.result ? <Latex  style={{}}>{`$ ${response.result} $`}</Latex> : <div> </div>
                     }

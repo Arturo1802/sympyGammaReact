@@ -13,7 +13,7 @@ import {
 const Ecuaciones = () => {
     const [response, setResponse] = useState({})
     const submitForm = async(variable) => {
-        await console.log(axios.post(`http://localhost:3333/integrate/`, { id: `${variable}`, expression: `${variable}` }).then((res) => { setResponse(res.data) }))
+        await console.log(axios.post(`http://localhost:8000/integrate/`, { id: `${variable}`, expression: `${variable}` }).then((res) => { setResponse(res.data) }))
     }
     const handleSubmit = (e) => {
         e.preventDefault()
